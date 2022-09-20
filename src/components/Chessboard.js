@@ -36,11 +36,20 @@ export default function Chessboard({
                     handleClick(sq);
                   }}
                   key={sq}
-                  className={tileClass}
+                  className={
+                    tileClass +
+                    (sq === initialPosition || sq === finalPosition
+                      ? " selected"
+                      : "")
+                  }
                 >
                   {(isValidated && piece && sq === initialPosition) ||
                   (isValidated && piece && sq === finalPosition) ? (
-                    <img alt={pieceName} src={piece}></img>
+                    <img
+                      className="chess-piece"
+                      alt={pieceName}
+                      src={piece}
+                    ></img>
                   ) : (
                     sq
                   )}

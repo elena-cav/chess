@@ -1,5 +1,6 @@
 const xAxis = "ABCDEFGH";
 const dyn_functions = [];
+const pieces = ["Pawn", "Rook", "King", "Queen", "Bishop", "Knight"];
 
 const calcXAxis = (initialX, finalX) =>
   Math.abs(xAxis.indexOf(initialX) - xAxis.indexOf(finalX));
@@ -56,8 +57,22 @@ const validatePawn = ({ xAxisMove, yAxisMove }, initialPosition, colour) => {
     return true;
   }
 };
+const checkProps = (piece, initialPosition, finalPosition, colour) => {
+  if (!pieces.includes(piece)) {
+    throw new Error("Piece is not valid");
+  }
+  if (
+    !xAxis.includes(initialPosition[0] || !xAxis.includes(finalPosition[0]))
+  ) {
+    throw new Error("Position is not valid");
+  }
+  if (colour !== "White" && colour !== "Black") {
+    throw new Error("Colour is not valid");
+  }
+};
 
 const canMove = (piece, initialPosition, finalPosition, colour) => {
+  checkProps(piece, initialPosition, finalPosition, colour);
   const xAxisMove = calcXAxis(initialPosition[0], finalPosition[0]);
   const yAxisMove = Math.abs(initialPosition[1] - finalPosition[1]);
   const moves = {

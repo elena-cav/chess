@@ -1,4 +1,5 @@
 import canMove from ".";
+import { testProp, fc } from "jest-fast-check";
 
 describe("chess", () => {
   test("should be able to validate a valid King move", () => {
@@ -32,10 +33,10 @@ describe("chess", () => {
     expect(canMove("Knight", "C4", "A3", "White")).toBe(false);
   });
   test("should be able to validate a valid Pawn initial move", () => {
-    expect(canMove("Pawn", "B2", "B4")).toBe(true);
+    expect(canMove("Pawn", "B2", "B4", "White")).toBe(true);
   });
   test("should be able to validate a valid Pawn move", () => {
-    expect(canMove("Pawn", "C3", "C4")).toBe(true);
+    expect(canMove("Pawn", "C3", "C4", "White")).toBe(true);
   });
   test("should be able to validate an invalid Pawn move", () => {
     expect(canMove("Pawn", "C3", "C5", "White")).toBe(false);
@@ -44,4 +45,55 @@ describe("chess", () => {
     expect(canMove("Pawn", "C1", "C2", "White")).toBe(false);
     expect(canMove("Pawn", "C8", "C7", "Black")).toBe(false);
   });
+  test("should reject with invalid position", () => {
+    expect(() => canMove("Pawn", "Y3", "C5", "White")).toThrow(
+      new Error("Position is not valid")
+    );
+  });
 });
+testProp(
+  "throw an error if piece is not accepted",
+  [fc.string()],
+  (a) => {
+    try {
+      canMove(a);
+    } catch (e) {
+      return true;
+    }
+  },
+  { verbose: true }
+);
+
+testProp(
+  "throw an error if position is not accepted",
+  [
+    fc.constantFrom("Pawn", "Rook", "King", "Queen", "Bishop", "Knight"),
+    fc.string(),
+    fc.string(),
+  ],
+  (a, b, c) => {
+    try {
+      canMove(a, b, c);
+    } catch (e) {
+      return true;
+    }
+  },
+
+  { verbose: true }
+);
+testProp(
+  "throw an error if colour is not accepted",
+  [
+    fc.constantFrom("Pawn", "Rook", "King", "Queen", "Bishop", "Knight"),
+    fc.string(),
+  ],
+  (a, b) => {
+    try {
+      canMove(a, "A2", "A3", b);
+    } catch (e) {
+      return true;
+    }
+  },
+
+  { verbose: true }
+);

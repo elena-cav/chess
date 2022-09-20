@@ -26,9 +26,13 @@ function App() {
       <h1>Chessboard validator</h1>
       <div className="pieces">
         {blackPieces.map(({ piece, name }) => {
+          // const classNames =
+          //   pieceObj?.name === name ? "piece selected" : "piece";
           return (
             <button
-              className="piece"
+              className={
+                "piece " + (pieceObj?.piece === piece ? "selected" : "")
+              }
               key={name}
               onClick={() => {
                 setPiece({ name, piece, colour: "Black" });
@@ -51,7 +55,9 @@ function App() {
         {whitePieces.map(({ piece, name }) => {
           return (
             <button
-              className="piece"
+              className={
+                "piece " + (pieceObj?.piece === piece ? "selected" : "")
+              }
               key={name}
               onClick={() => {
                 setPiece({ name, piece, colour: "White" });

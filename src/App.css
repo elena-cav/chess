@@ -59,6 +59,10 @@ button {
   column-gap: 0.5rem;
   justify-content: center;
 }
+.selected {
+  background-color: #ff9028;
+}
+
 .piece:hover {
   background-color: rgb(232, 232, 232);
 }
