@@ -1,6 +1,4 @@
 import React from "react";
-import knight from "../assets/knight_w.png";
-
 import "./chessboard.css";
 
 export default function Chessboard({
@@ -18,18 +16,20 @@ export default function Chessboard({
         return `${String.fromCharCode(65 + i)}${8 - j}`;
       });
   });
+  const turnedBoard = board[0].map((_, colIndex) =>
+    board.map((row) => row[colIndex])
+  );
 
   return (
     <div className="chessboard">
-      {board.reverse().map((x, i) => {
+      {turnedBoard.map((x, i) => {
         return (
           <div className="row" key={i}>
-            {x.reverse().map((sq, j) => {
+            {x.map((sq, j) => {
               const tileClass =
                 (i % 2 === 0 && j % 2 === 1) || (i % 2 === 1 && j % 2 === 0)
                   ? "tile black-tile"
                   : "tile white-tile";
-              console.log(sq, initialPosition, finalPosition);
               return (
                 <button
                   onClick={() => {

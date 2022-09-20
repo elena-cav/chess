@@ -5,7 +5,7 @@
   width: 640px;
   height: 640px;
   background-color: blue;
-  margin-bottom: 1rem;
+  margin: 1rem 0;
 }
 
 .chessboard .tile {
@@ -26,19 +26,3 @@
 .white-tile:hover {
   background-color: #d0d1b4;
 }
-
-/* img {
-  animation-duration: 0.5s;
-  animation-name: animate-fade;
-  animation-delay: 0.5s;
-  animation-fill-mode: backwards;
-
-  @keyframes animate-fade {
-    0% {
-      opacity: 0;
-    }
-    100% {
-      opacity: 1;
-    }
-  }
-} */

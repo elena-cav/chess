@@ -1,7 +1,7 @@
 import "./App.css";
 import { useState } from "react";
 import Chessboard from "./components/Chessboard";
-import { pieces } from "./utilties/pieces";
+import { whitePieces, blackPieces } from "./utilties/pieces";
 import canMove from "./utilties/index";
 function App() {
   const [pieceObj, setPiece] = useState(null);
@@ -9,7 +9,6 @@ function App() {
   const [finalPosition, setFinalPosition] = useState(null);
   const [isValid, setIsValid] = useState(false);
   const [isValidated, setValidated] = useState(false);
-  console.log("PIECE", pieceObj);
   const handlePositionClick = (sq) => {
     if (!initialPosition) {
       setInitialPosition(sq);
@@ -17,12 +16,29 @@ function App() {
   };
   const handleValidate = () => {
     setValidated(true);
-    setIsValid(canMove(pieceObj.name, initialPosition, finalPosition));
+    setIsValid(
+      canMove(pieceObj.name, initialPosition, finalPosition, pieceObj.colour)
+    );
   };
 
   return (
     <div className="App">
       <h1>Chessboard validator</h1>
+      <div className="pieces">
+        {blackPieces.map(({ piece, name }) => {
+          return (
+            <button
+              className="piece"
+              key={name}
+              onClick={() => {
+                setPiece({ name, piece, colour: "Black" });
+              }}
+            >
+              <img alt={name} src={piece}></img>
+            </button>
+          );
+        })}
+      </div>
       <Chessboard
         handleClick={handlePositionClick}
         initialPosition={initialPosition}
@@ -32,13 +48,13 @@ function App() {
         pieceName={pieceObj?.name}
       />
       <div className="pieces">
-        {pieces.map(({ piece, name }) => {
+        {whitePieces.map(({ piece, name }) => {
           return (
             <button
               className="piece"
               key={name}
               onClick={() => {
-                setPiece({ name, piece });
+                setPiece({ name, piece, colour: "White" });
               }}
             >
               <img alt={name} src={piece}></img>
