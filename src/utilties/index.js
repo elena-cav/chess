@@ -54,14 +54,12 @@ const validatePawn = (
     (colour === "Black" && initialX < finalX)
   ) {
     return false;
-  }
-  if (
+  } else if (
     (initialX === "1" && colour === "White") ||
     (initialX === "8" && colour === "Black")
   ) {
     return false;
-  }
-  if (initialX === "2" && xAxisMove === 0) {
+  } else if (initialX === "2" && xAxisMove === 0) {
     if (yAxisMove === 1 || yAxisMove === 2) {
       return true;
     }
@@ -72,13 +70,11 @@ const validatePawn = (
 const checkProps = (piece, initialPosition, finalPosition, colour) => {
   if (!pieces.includes(piece)) {
     throw new Error("Piece is not valid");
-  }
-  if (
+  } else if (
     !xAxis.includes(initialPosition[0] || !xAxis.includes(finalPosition[0]))
   ) {
     throw new Error("Position is not valid");
-  }
-  if (colour !== "White" && colour !== "Black") {
+  } else if (colour !== "White" && colour !== "Black") {
     throw new Error("Colour is not valid");
   }
 };
