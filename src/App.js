@@ -26,8 +26,6 @@ function App() {
       <h1>Chessboard validator</h1>
       <div className="pieces">
         {blackPieces.map(({ piece, name }) => {
-          // const classNames =
-          //   pieceObj?.name === name ? "piece selected" : "piece";
           return (
             <button
               className={
@@ -96,8 +94,12 @@ function App() {
         </button>
       </div>
       <div className="valid">
-        {isValidated && isValid && <p>Your move is valid</p>}
-        {isValidated && !isValid && <p>Your move is not valid</p>}
+        {isValidated && isValid && (
+          <p className="valid-text">Your move is valid</p>
+        )}
+        {isValidated && !isValid && (
+          <p className="invalid-text">Your move is not valid</p>
+        )}
       </div>
     </div>
   );

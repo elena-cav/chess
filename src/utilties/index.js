@@ -7,8 +7,8 @@ const calcXAxis = (initialX, finalX) =>
 
 dyn_functions["validateQueen"] = ({ xAxisMove, yAxisMove }) => {
   if (
-    (xAxisMove > 0 && yAxisMove === 0) ||
-    (xAxisMove === 0 && yAxisMove > 1) ||
+    (yAxisMove > 0 && xAxisMove === 0) ||
+    (yAxisMove === 0 && xAxisMove > 0) ||
     xAxisMove === yAxisMove
   ) {
     return true;
@@ -56,12 +56,12 @@ const validatePawn = (
     return false;
   }
   if (
-    (initialPosition[1] === "1" && colour === "White") ||
-    (initialPosition[1] === "8" && colour === "Black")
+    (initialX === "1" && colour === "White") ||
+    (initialX === "8" && colour === "Black")
   ) {
     return false;
   }
-  if (initialPosition[1] === "2" && xAxisMove === 0) {
+  if (initialX === "2" && xAxisMove === 0) {
     if (yAxisMove === 1 || yAxisMove === 2) {
       return true;
     }
@@ -91,6 +91,7 @@ const canMove = (piece, initialPosition, finalPosition, colour) => {
     xAxisMove,
     yAxisMove,
   };
+
   const validatePiece = `validate${piece}`;
   let isValid;
   if (piece === "Pawn") {

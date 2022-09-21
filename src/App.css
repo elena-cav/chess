@@ -102,3 +102,17 @@ button {
 .valid {
   height: 3rem;
 }
+.valid-text {
+  font-weight: bold;
+  background: #23cf00;
+  background: linear-gradient(to right, #23cf00 0%, #e68312 100%);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.invalid-text {
+  font-weight: bold;
+  background: #cf0000;
+  background: linear-gradient(to right, #cf0000 0%, #e68312 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
