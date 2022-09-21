@@ -45,9 +45,23 @@ describe("chess", () => {
     expect(canMove("Pawn", "C1", "C2", "White")).toBe(false);
     expect(canMove("Pawn", "C8", "C7", "Black")).toBe(false);
   });
+  test("should be able to flag if pawn moves backwards", () => {
+    expect(canMove("Pawn", "C3", "C2", "White")).toBe(false);
+    expect(canMove("Pawn", "C7", "C8", "Black")).toBe(false);
+  });
   test("should reject with invalid position", () => {
     expect(() => canMove("Pawn", "Y3", "C5", "White")).toThrow(
       new Error("Position is not valid")
+    );
+  });
+  test("should reject with invalid piece", () => {
+    expect(() => canMove("Piece", "B3", "C5", "White")).toThrow(
+      new Error("Piece is not valid")
+    );
+  });
+  test("should reject with invalid colour", () => {
+    expect(() => canMove("Pawn", "B3", "C5", "Pink")).toThrow(
+      new Error("Colour is not valid")
     );
   });
 });

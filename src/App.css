@@ -59,8 +59,14 @@ button {
   column-gap: 0.5rem;
   justify-content: center;
 }
-.selected {
+.selected.piece {
   background-color: #ff9028;
+}
+.piece.selected:hover {
+  background-color: #ff9028;
+}
+.piece {
+  background-color: transparent;
 }
 
 .piece:hover {

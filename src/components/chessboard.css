@@ -13,8 +13,8 @@
   height: 80px;
 }
 
-.selected {
-  border: solid 1px #ff9028;
+.selectedTile {
+  border: solid 1.5px #ff9028;
 }
 
 .black-tile {

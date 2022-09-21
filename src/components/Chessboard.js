@@ -39,7 +39,7 @@ export default function Chessboard({
                   className={
                     tileClass +
                     (sq === initialPosition || sq === finalPosition
-                      ? " selected"
+                      ? " selectedTile"
                       : "")
                   }
                 >

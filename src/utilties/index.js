@@ -41,8 +41,20 @@ dyn_functions["validateKnight"] = ({ xAxisMove, yAxisMove }) => {
     return true;
   }
 };
-const validatePawn = ({ xAxisMove, yAxisMove }, initialPosition, colour) => {
-  console.log(xAxisMove, yAxisMove, initialPosition);
+const validatePawn = (
+  { xAxisMove, yAxisMove },
+  initialPosition,
+  finalPosition,
+  colour
+) => {
+  const initialX = initialPosition[1];
+  const finalX = finalPosition[1];
+  if (
+    (colour === "White" && initialX > finalX) ||
+    (colour === "Black" && initialX < finalX)
+  ) {
+    return false;
+  }
   if (
     (initialPosition[1] === "1" && colour === "White") ||
     (initialPosition[1] === "8" && colour === "Black")
@@ -82,7 +94,8 @@ const canMove = (piece, initialPosition, finalPosition, colour) => {
   const validatePiece = `validate${piece}`;
   let isValid;
   if (piece === "Pawn") {
-    isValid = validatePawn(moves, initialPosition, colour) || false;
+    isValid =
+      validatePawn(moves, initialPosition, finalPosition, colour) || false;
   } else {
     isValid = dyn_functions[validatePiece](moves) || false;
   }
