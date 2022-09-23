@@ -54,10 +54,7 @@ const validatePawn = (
   const finalX = finalPosition[1];
   if (
     (colour === "White" && initialX > finalX) ||
-    (colour === "Black" && initialX < finalX)
-  ) {
-    return false;
-  } else if (
+    (colour === "Black" && initialX < finalX) ||
     (initialX === "1" && colour === "White") ||
     (initialX === "8" && colour === "Black")
   ) {
