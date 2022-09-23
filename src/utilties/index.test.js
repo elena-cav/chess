@@ -27,10 +27,10 @@ describe("Chess board move validator", () => {
     expect(canMove("Queen", "C4", "D6", "White")).toBe(false);
   });
   test("should be able to validate a valid Knight move", () => {
-    expect(canMove("Knight", "C4", "B5", "White")).toBe(true);
+    expect(canMove("Knight", "C4", "B6", "White")).toBe(true);
   });
   test("should be able to validate an invalid Knight move", () => {
-    expect(canMove("Knight", "C4", "A3", "White")).toBe(false);
+    expect(canMove("Knight", "C4", "A2", "White")).toBe(false);
   });
   test("should be able to validate a valid Pawn initial move", () => {
     expect(canMove("Pawn", "B2", "B4", "White")).toBe(true);
