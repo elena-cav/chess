@@ -37,7 +37,10 @@ dyn_functions["validateRook"] = ({ xAxisMove, yAxisMove }) => {
   }
 };
 dyn_functions["validateKnight"] = ({ xAxisMove, yAxisMove }) => {
-  if (xAxisMove === 1 && yAxisMove === 1) {
+  if (
+    (xAxisMove === 2 && yAxisMove === 1) ||
+    (xAxisMove === 1 && yAxisMove === 2)
+  ) {
     return true;
   }
 };
@@ -59,7 +62,10 @@ const validatePawn = (
     (initialX === "8" && colour === "Black")
   ) {
     return false;
-  } else if (initialX === "2" && xAxisMove === 0) {
+  } else if (
+    (initialX === "2" && xAxisMove === 0) ||
+    (initialX === "7" && xAxisMove === 0)
+  ) {
     if (yAxisMove === 1 || yAxisMove === 2) {
       return true;
     }
